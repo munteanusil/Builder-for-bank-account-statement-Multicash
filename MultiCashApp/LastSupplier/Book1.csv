@@ -1,0 +1,4 @@
+﻿SupplierId,SupplierName,FiscalCode,Locality,PhoneNumber,Email,Bank,Account,TradeRegister,Address,Swift_BIC,UploadWeek,UploadDate,IsoWeekyear
+1,gogu016,Gigi,bucuresti,72,Gigi@maill,Gbankl,G051256,Cui0038,street nr.1,Gigi,,,2023
+2,gogu017,Gigi,bucuresti,72,Gigi@maill,Gbankl,G1592,Cui0039,street nr.2,Gigi,,,2023
+7,gogu018,Gigi,bucuresti,72,Gigi@maill,Gbankl,G5452,Cui0040,street nr.3,Gigi,,,2023

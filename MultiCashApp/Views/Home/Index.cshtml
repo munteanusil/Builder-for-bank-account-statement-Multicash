@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+@*Supplier card*@
+<div class="text-center">
+    <img src="images\Multicashlogo.png" alt="logo.makita" width="200px" height="200px" />
+    @*<h1 class="display-4">Welcome!</h1>*@
+    @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+</div>
+
+
+ <form method="post" action="/Supplier/Upload" enctype="multipart/form-data">
+<div class="card-group" style="margin-top: 10px">
+    <div class="card" >
+        <img src="\images\supplier.png" class="card-img-to" alt="..." style="width: 20rem; margin-top: 50px">
+    <div class="card-body">
+            <h5 class="card-title">Supplier File</h5>
+            <p class="card-text">Put the file related to the suppliers in excel format in the upload field.</p>
+    </div>
+       @*     <div class="form-group mt-3">
+                <label class="mr-2">Select week:</label>
+                <input type="week" id="week-picker" name="week">
+            </div>
+        <div class="form-group mt-3">
+            <label class="mr-2">Upload your file:</label>
+            <input type="file" name="file">
+        </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Submit</button>
+       <small class="text-body-secondary">Last updated 3 mins ago</small>
+    </div>*@
+         @*   <button type="button" class="btn btn-success">
+                <a href="https://localhost:44385/Suppliers" style="color: white; text-decoration: none;">Incarca Fisier Furnizori</a>
+            </button>
+            <button type="button" class="btn  btn-info">
+                <a href="https://localhost:44385/AllSupplierLists" style="color: white; text-decoration: none;">Vezi toti furnizori</a>
+            </button>
+            <button type="button" class="btn btn-danger">
+                <a href="pagina-tinta.html" style="color: white; text-decoration: none;">Textul butonului</a>
+            </button>*@
+            
+            <div class="btn-group" role="group" aria-label="Basic example">          
+                <button type="button" class="btn btn-outline-success"> <a href="https://localhost:44385/Suppliers" style="color: green; text-decoration: none;font-weight:bold;">Incarca Fisier Furnizori</a></button>
+                <button type="button" class="btn btn-outline-primary"><a href="https://localhost:44385/AllSupplierLists" style="color: blue; text-decoration: none;font-weight:bold;">Vezi toti furnizori</a></button>
+                <button type="button" class="btn btn-outline-danger"> <a href="https://localhost:44385/Views/AllSupplierLists/Index.cshtml" style="color: red; text-decoration: none;font-weight:bold;">Modificari Furnizori</a></button>
+            </div>
+  </div>
+</form>
+  <div class="card">
+        <img src="\images\invoice4.png" class="card-img-top" alt="..." style="width: 20rem; margin-top: 50px">
+    <div class="card-body">
+      <h5 class="card-title">Invoice File</h5>
+      <p class="card-text">Put the file related to the invoices in excel format in the upload field..</p>
+    </div>
+
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-outline-success"> <a href="https://localhost:44385/Invoices" style="color: green; text-decoration: none;font-weight:bold; ">Incarca Fisier Facturi</a></button>
+        <button type="button" class="btn btn-outline-primary"><a href="https://localhost:44385/AllSupplierLists" style="color: blue; text-decoration: none;font-weight:bold;">Vezi toate facturile</a></button>
+        <button type="button" class="btn btn-outline-danger"> <a href="https://localhost:44385/Views/AllSupplierLists/Index.cshtml" style="color: red; text-decoration: none;font-weight:bold;">Modificari Facturi</a></button>
+    </div>
+  </div>
+
+  <div class="card">
+        <img src="\images\import.png" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Redirecting  File Generated</h5>
+            <p class="card-text">This file is generated in the form of the union and changes made to the supplier file and the invoice file, file is used in the payment process (MultiCash).</p>
+    </div>
+        <p calss="red fancy" style=" font-weight: bold;
+        text-shadow: 4px 4px 3px #FFD207;">Rule: To generate the MultiCash report, you must first upload supplier and invoice files.</p>
+    <div class="card-footer">
+        <button type="button" class="btn btn-outline-primary" onclick="redirect()"> <i class="fab fa-google-play" style="font-weight:bold;"></i> Redirecting  File Generated</button>
+        <script>
+    function redirect() {
+                window.location.href = "......"; // înlocuiește cu adresa paginii către care dorești să te redirecționezi
+    }
+  </script>
+          
+    </div>
+  </div>
+</div>
+
+                    
+
+
+
+
+

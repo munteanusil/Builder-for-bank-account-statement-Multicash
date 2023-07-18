@@ -1,0 +1,167 @@
+﻿@model IEnumerable<MultiCashApp.Models.Invoice>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<div style="float: right; margin-bottom:-30px;" >
+
+    @Html.Raw($"<a href='{Url.Action("DownloadExcelUpload", "Invoices")}' class='btn btn-outline-success'><i class='fa-solid fa-download'></i>Descarca Evidenta</a>")
+
+</div>
+
+
+
+<h5 class="table-heading" style="text-align:left; margin-right:180px;">In acest raport se afiseaza tote facturile introduse in pagina de incarca fiser furnizor in in ordine cornologica conform cu operatiunea de incarcare.  </h5>
+
+<div class="container">
+    <table class="styled-table" id="paginationallinv" cellpadding="0" cellspacing="0" border="1">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuewithVAT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FiscalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IBAN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bank_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UploadWeek)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UploadDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsoWeekyear)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Invoicedate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValuewithVAT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FiscalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IBAN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bank_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadWeek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsoWeekyear)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdInvoice">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdInvoice">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdInvoice">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+
+<style>
+
+    .container {
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .table-heading {
+        white-space: nowrap;
+    }
+
+    .right-align {
+        text-align: center;
+    }
+
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px auto;
+        margin-left: 100px;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 1600px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px solid #009879;
+                .styled-table tbody tr.active-row
+
+    {
+        font-weight: bold;
+        color: #009879;
+    }
+
+</style>
+
+

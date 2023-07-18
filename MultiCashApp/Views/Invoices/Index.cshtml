@@ -1,0 +1,213 @@
+﻿@model IEnumerable<MultiCashApp.Models.Invoice>
+
+@{
+    ViewData["Title"] = "Index"; 
+    Layout = "_Layout";
+}
+
+
+<style>
+
+    .container {
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .card {
+        width: 300px;
+    }
+
+    .formclass {
+        margin-bottom: 20px;
+    }
+
+    .form-control-sm {
+        padding: 15px;
+    }
+
+    .btn-primary {
+        margin-top: 10px;
+    }
+
+    .searchbutton {
+        margin-left: 10px;
+    }
+
+    .card-subtitle {
+        font-weight: bold;
+    }
+
+    .card-title {
+        margin-bottom: 5px;
+    }
+
+    .card {
+        width: 35rem;
+        height: 5rem;
+        margin-left: -220px;
+        /* margin-top: 20px;*/
+    }
+
+    .fild-search {
+        margin-left: 270px;
+    }
+
+    .card-men {
+        width: 35rem;
+        height: 5rem;
+        margin-left: 900px;
+        margin-top: -70px;
+    }
+
+    #message {
+        margin-top: 10px;
+    }
+
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        margin-left: -100px;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 1600px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+</style>
+
+
+
+<br />
+<div class="">
+    <!--Show Message if file is uploaded or not-->
+    @ViewBag.Message
+</div>
+
+<div class="card-body text-right">
+    <form asp-action="Upload" asp-controller="Invoices" method="post" enctype="multipart/form-data" class="formclass ">
+        <input type="file" name="file" class="form-control-sm " id="deincarcat" />
+        <button type="submit" id="upload" class="btn btn-outline-warning" style="font-weight: bold;  color: black;" onclick="myFunctionValidate()">Incarca Fisier</button>
+        <p id="message"></p>
+    </form>
+</div>
+
+@*<div style="float: right;padding:10px">
+
+    @Html.Raw($"<a href='{Url.Action("DownloadExcelUpload", "Invoices")}' class='btn btn-outline-success'><i class='fa-solid fa-download'></i>Descarca Evidenta</a>")
+
+</div>*@
+
+<table class="styled-table" id="paginationinv" cellpadding="0" cellspacing="0" border="1">
+    <thead>
+        <div class="d-flex align-items-left">
+            <a href="/Invoices/DownloadExcel" class="btn btn-secondary" style=" margin-top: -10px; font-weight: bold; padding:10px">Descarca Model</a>
+            <h6 class="card-subtitle mb-2  highlight-text">Fiserele incarcate trebuie sa fie conforme cu modelul dat si sa fie de tipul ".csv" sau ".xlsx".</h6>
+        </div>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdInvoice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+
+            <th > 
+                @Html.DisplayNameFor(model => model.ValuewithVAT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FiscalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IBAN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bank_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UploadWeek)           
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UploadDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsoWeekyear)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) { // de aici pot schimba coloanele in view
+        <tr>
+             <td>
+                 @Html.DisplayFor(modelItem => item.IdInvoice)
+             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Invoicedate)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValuewithVAT)
+            </td>          
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.FiscalCode)
+            </td>
+             <td>
+                    @Html.DisplayFor(modelItem => item.IBAN)
+             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bank_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentType)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadWeek)
+            </td>
+             <td>
+                    @Html.DisplayFor(modelItem => item.UploadDate)
+             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsoWeekyear)
+            </td>
+               
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdInvoice">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdInvoice">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdInvoice">Delete</a>
+            </td>
+        </tr>
+       
+}
+     
+    </tbody>
+</table>
+

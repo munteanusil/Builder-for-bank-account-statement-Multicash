@@ -1,0 +1,375 @@
+﻿@model IEnumerable<MultiCashApp.Models.SupplierChanges>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<h2 class="right-align">Modificari Furnizori</h2>
+
+<h5 class="table-heading">In acest raport se afiseaza toate modificarile facute asupra proprietatilor furnizorilor introdusi.</h5>
+
+<style>
+    #containerscroll {
+        /*test push*/
+        /*test push*/
+        width: 145px;
+        height: 100px;
+        border: 1px solid #0af26b;
+        overflow-x: scroll;
+    }
+
+    #contentscroll {     
+        width: 250px;
+        background-color: #0af26b;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px; /* Poți ajusta această valoare pentru a modifica distanța dintre div și antetul paginii */
+        margin-bottom:-50px;
+    }
+
+    button {
+        --c: #229091; /* the color*/
+
+        box-shadow: 0 0 0 .1em inset var(--c);
+        --_g: linear-gradient(var(--c) 0 0) no-repeat;
+        background: var(--_g) calc(var(--_p,0%) - 100%) 0%, var(--_g) calc(200% - var(--_p,0%)) 0%, var(--_g) calc(var(--_p,0%) - 100%) 100%, var(--_g) calc(200% - var(--_p,0%)) 100%;
+        background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
+        outline-offset: .1em;
+        transition: background-size .4s, background-position 0s .4s;
+    }
+
+        button:hover {
+            --_p: 100%;
+            transition: background-position .4s, background-size 0s;
+        }
+
+        button:active {
+            box-shadow: 0 0 9e9q inset #0009;
+            background-color: var(--c);
+            color: #fff;
+        }
+
+    button {
+        font-family: system-ui, sans-serif;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 10px;
+        font-weight: bold;
+        border: none;
+    }
+
+</style>
+
+<div class="center" style="height:50px;">
+    <button onclick="scrollTable('left')" style="--c:#fcba03;height:50px; " id="btn1"> <img src="~/images/left.png" style="height:40px;padding: 5px;" />Scroll la stânga</button>
+    <button onclick="scrollTable('right')" style="--c: #12c94f ;"> Scroll la dreapta<img src="~/images/left.png" style="height:40px; transform: rotate(3.142rad);padding:5px;" /> </button>
+</div>
+
+<div class="container" >
+    <div class="table-wrapper">
+    <table class="styled-table" id="paginationsuppch" cellpadding="0" cellspacing="0" border="1" >
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyCodeOld)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyCodeNew)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierNameOld)
+            </th>
+            <th>
+                    @Html.DisplayNameFor(model => model.SupplierNameNew)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FiscalCodeOld)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FiscalCodeNew)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocalityOld)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocalityNew)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumberOld)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumberNew)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailOld)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailNew)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankOld)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankNew)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountOld)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountNew)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TradeRegisterOld)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TradeRegisterNew)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressOld)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressNew)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Swift_BIC_old)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Swift_BIC_new)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModificationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhoMadeChange)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyCodeOld)             @* Aici verificam daca valoarea din CompanyCodeOld este diferita de CompanyCodeNew daca este adevarat*@
+            </td>
+            <td>                                                                      @*atunci valoarea lui CompanyCodeNew se va afisa*@
+                @if (item.CompanyCodeOld != item.CompanyCodeNew){
+                @Html.DisplayFor(modelItem => item.CompanyCodeNew)
+                              
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierNameOld)
+            </td>
+            <td>
+                @if(item.SupplierNameOld != item.SupplierNameNew){
+                @Html.DisplayFor(modelItem => item.SupplierNameNew)
+                             
+                }
+            </td>
+            <td> 
+                @Html.DisplayFor(modelItem => item.FiscalCodeOld)
+            </td>
+            <td>
+                @if (item.FiscalCodeOld != item.FiscalCodeNew){
+                @Html.DisplayFor(modelItem => item.FiscalCodeNew)
+                              
+                            }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocalityOld)
+            </td>
+            <td>
+                @if(item.LocalityOld != item.LocalityNew){
+                @Html.DisplayFor(modelItem => item.LocalityNew)
+                              
+                 }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumberOld)
+            </td>
+            <td>
+                @if(item.PhoneNumberOld != item.PhoneNumberNew) {
+                @Html.DisplayFor(modelItem => item.PhoneNumberNew)
+                             
+                            }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailOld)
+            </td>
+            <td>
+                @if(item.EmailOld != item.EmailNew){
+                @Html.DisplayFor(modelItem => item.EmailNew)
+                               
+                            }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BankOld)
+            </td>
+            <td>
+                @if(item.BankOld != item.BankNew){
+                @Html.DisplayFor(modelItem => item.BankNew)
+                             
+                 }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountOld)
+            </td>
+            <td>
+                @if(item.AccountOld != item.AccountNew){
+                @Html.DisplayFor(modelItem => item.AccountNew)
+                               
+                            }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TradeRegisterOld)
+            </td>
+            <td>
+               @if (item.TradeRegisterOld != item.TradeRegisterNew){
+                @Html.DisplayFor(modelItem => item.TradeRegisterNew)
+                                
+                      }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressOld)
+            </td>
+            <td>
+                @if(item.AddressOld != item.AccountNew){
+                @Html.DisplayFor(modelItem => item.AddressNew)
+                               
+                            }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Swift_BIC_old)
+            </td>
+            <td>
+                @if(item.Swift_BIC_old != item.Swift_BIC_old) {
+                @Html.DisplayFor(modelItem => item.Swift_BIC_new)
+                              
+                            }
+            </td>
+            <td>
+                            @if (item.SupplierNameOld != item.SupplierNameNew || item.FiscalCodeOld != item.FiscalCodeNew || item.LocalityOld != item.LocalityNew || item.PhoneNumberOld != item.PhoneNumberNew || item.EmailOld != item.EmailNew || item.BankOld != item.BankNew || item.AccountOld != item.AccountNew || item.TradeRegisterOld != item.TradeRegisterNew || item.AddressOld != item.AddressNew || item.Swift_BIC_old != item.Swift_BIC_new)
+                            {
+                             
+                                @Html.DisplayFor(modelItem => item.ModificationDate)
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.ModificationDate)
+                            }
+                
+            </td>
+            <td>
+               @* @Html.DisplayFor(modelItem => item.WhoMadeChange)*@
+                            @User.Identity.Name
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SupplierChangesId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SupplierChangesId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SupplierChangesId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>
+
+
+
+<script>
+    function scrollTable(direction) {
+        const container = document.querySelector(".table-wrapper");
+        const scrollDistance = 300; // Modificați această valoare pentru a ajusta distanța de derulare
+
+        if (direction === "left") {
+            container.scrollLeft -= scrollDistance; // Derulare la stânga
+        } else if (direction === "right") {
+            container.scrollLeft += scrollDistance; // Derulare la dreapta
+        }
+    }
+</script>
+
+
+
+
+
+<style>
+
+    #contabel
+    {
+        display: grid;
+        justify-content: center;
+        margin-top: 50px;
+        width: 312rem;
+    }
+    .container {
+        display: grid;
+        justify-content: center;
+        margin-top: 50px;
+        width:350rem;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        width:118rem;
+    }
+    .table-heading {
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .right-align {
+        text-align: center;
+    }
+
+    .styled-table {
+   /*     border-collapse: collapse;
+        margin: 25px auto;
+        margin-left: 100px;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 1600px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);*/
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 0.9em;
+        font-family: sans-serif;
+    }
+
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px solid #009879;
+                .styled-table tbody tr.active-row
+
+    {
+        font-weight: bold;
+        color: #009879;
+    }
+
+
+</style>
+
+    

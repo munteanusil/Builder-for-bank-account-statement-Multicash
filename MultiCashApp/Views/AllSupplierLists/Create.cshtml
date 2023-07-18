@@ -1,0 +1,98 @@
+﻿@model MultiCashApp.Models.AllSupplierList
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>AllSupplierList</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CompanyCode" class="control-label"></label>
+                <input asp-for="CompanyCode" class="form-control" />
+                <span asp-validation-for="CompanyCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierName" class="control-label"></label>
+                <input asp-for="SupplierName" class="form-control" />
+                <span asp-validation-for="SupplierName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FiscalCode" class="control-label"></label>
+                <input asp-for="FiscalCode" class="form-control" />
+                <span asp-validation-for="FiscalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Locality" class="control-label"></label>
+                <input asp-for="Locality" class="form-control" />
+                <span asp-validation-for="Locality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bank" class="control-label"></label>
+                <input asp-for="Bank" class="form-control" />
+                <span asp-validation-for="Bank" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Account" class="control-label"></label>
+                <input asp-for="Account" class="form-control" />
+                <span asp-validation-for="Account" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TradeRegister" class="control-label"></label>
+                <input asp-for="TradeRegister" class="form-control" />
+                <span asp-validation-for="TradeRegister" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Swift_BIC" class="control-label"></label>
+                <input asp-for="Swift_BIC" class="form-control" />
+                <span asp-validation-for="Swift_BIC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UploadWeek" class="control-label"></label>
+                <input asp-for="UploadWeek" class="form-control" />
+                <span asp-validation-for="UploadWeek" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UploadDate" class="control-label"></label>
+                <input asp-for="UploadDate" class="form-control" />
+                <span asp-validation-for="UploadDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsoWeekyear" class="control-label"></label>
+                <input asp-for="IsoWeekyear" class="form-control" />
+                <span asp-validation-for="IsoWeekyear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MultiCashApp.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<h1 class="right-align" style="text-transform:uppercase; text-decoration:underline;  text-align: center; color: #0B9A6d;">Utilizatori existenti</h1>
+
+<button style="border: 1px solid black; float: right; margin:10px ; padding:5px;" />
+<img src="images/add-user1.png" alt="Add User" width="35" height="35" />
+<a asp-action="Create" style="font-size: 20px; font-weight: bold; color: green; text-decoration: none;"> Adauga Utilizator Nou</a>
+
+    </button>
+<div class="container">
+    <div class="table-wrapper">
+        <table class="styled-table" id="paginationUser" cellpadding="0" cellspacing="0" border="1">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmplyeeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmplyeeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>
+
+
+<style>
+.h1 {
+  text-align: center;
+  text-transform: uppercase;
+  color: #4CAF50;
+}
+
+</style>

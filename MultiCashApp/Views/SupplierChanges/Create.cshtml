@@ -1,0 +1,148 @@
+﻿@model MultiCashApp.Models.SupplierChanges
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>SupplierChanges</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CompanyCodeOld" class="control-label"></label>
+                <input asp-for="CompanyCodeOld" class="form-control" />
+                <span asp-validation-for="CompanyCodeOld" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyCodeNew" class="control-label"></label>
+                <input asp-for="CompanyCodeNew" class="form-control" />
+                <span asp-validation-for="CompanyCodeNew" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierNameOld" class="control-label"></label>
+                <input asp-for="SupplierNameOld" class="form-control" />
+                <span asp-validation-for="SupplierNameOld" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierNameNew" class="control-label"></label>
+                <input asp-for="SupplierNameNew" class="form-control" />
+                <span asp-validation-for="SupplierNameNew" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FiscalCodeOld" class="control-label"></label>
+                <input asp-for="FiscalCodeOld" class="form-control" />
+                <span asp-validation-for="FiscalCodeOld" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FiscalCodeNew" class="control-label"></label>
+                <input asp-for="FiscalCodeNew" class="form-control" />
+                <span asp-validation-for="FiscalCodeNew" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocalityOld" class="control-label"></label>
+                <input asp-for="LocalityOld" class="form-control" />
+                <span asp-validation-for="LocalityOld" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocalityNew" class="control-label"></label>
+                <input asp-for="LocalityNew" class="form-control" />
+                <span asp-validation-for="LocalityNew" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumberOld" class="control-label"></label>
+                <input asp-for="PhoneNumberOld" class="form-control" />
+                <span asp-validation-for="PhoneNumberOld" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumberNew" class="control-label"></label>
+                <input asp-for="PhoneNumberNew" class="form-control" />
+                <span asp-validation-for="PhoneNumberNew" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailOld" class="control-label"></label>
+                <input asp-for="EmailOld" class="form-control" />
+                <span asp-validation-for="EmailOld" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailNew" class="control-label"></label>
+                <input asp-for="EmailNew" class="form-control" />
+                <span asp-validation-for="EmailNew" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankOld" class="control-label"></label>
+                <input asp-for="BankOld" class="form-control" />
+                <span asp-validation-for="BankOld" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankNew" class="control-label"></label>
+                <input asp-for="BankNew" class="form-control" />
+                <span asp-validation-for="BankNew" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountOld" class="control-label"></label>
+                <input asp-for="AccountOld" class="form-control" />
+                <span asp-validation-for="AccountOld" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountNew" class="control-label"></label>
+                <input asp-for="AccountNew" class="form-control" />
+                <span asp-validation-for="AccountNew" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TradeRegisterOld" class="control-label"></label>
+                <input asp-for="TradeRegisterOld" class="form-control" />
+                <span asp-validation-for="TradeRegisterOld" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TradeRegisterNew" class="control-label"></label>
+                <input asp-for="TradeRegisterNew" class="form-control" />
+                <span asp-validation-for="TradeRegisterNew" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressOld" class="control-label"></label>
+                <input asp-for="AddressOld" class="form-control" />
+                <span asp-validation-for="AddressOld" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressNew" class="control-label"></label>
+                <input asp-for="AddressNew" class="form-control" />
+                <span asp-validation-for="AddressNew" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Swift_BIC_old" class="control-label"></label>
+                <input asp-for="Swift_BIC_old" class="form-control" />
+                <span asp-validation-for="Swift_BIC_old" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Swift_BIC_new" class="control-label"></label>
+                <input asp-for="Swift_BIC_new" class="form-control" />
+                <span asp-validation-for="Swift_BIC_new" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModificationDate" class="control-label"></label>
+                <input asp-for="ModificationDate" class="form-control" />
+                <span asp-validation-for="ModificationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WhoMadeChange" class="control-label"></label>
+                <input asp-for="WhoMadeChange" class="form-control" />
+                <span asp-validation-for="WhoMadeChange" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
