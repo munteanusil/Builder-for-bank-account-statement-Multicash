@@ -1,4 +1,3 @@
-Here is the translation of the Multicash Project status report and documentation into English.
 
 Multicash PROJECT Work Status
 GET Path&Name@Date – The action takes place in the Upload method of the controller (SupplierController and InvoiceController).
