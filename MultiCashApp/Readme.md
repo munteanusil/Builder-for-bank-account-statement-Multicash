@@ -1,77 +1,77 @@
-﻿Stadiu lucru PROIECT Multicash
+Here is the translation of the Multicash Project status report and documentation into English.
 
-1. GET  Path&Name@Date - actiounea se desfasoara metoda Upload din controlerul ( SupplierControler si Invoice Controller).
-2. Get Archive - presupune accesul la baza de date supplier pentru a se verifica daca deja exista o intrare cu aceleasi date. ( de verificat pentru ca daca eu colesc tabelul Supplier el nu  va avea acest la datele mai vechi)
-3. Check last update and path - se realizeza in cadul metodei upload plus restul de functionalizti nou adugate fata de aplicatia veche.
-4. Trucate furnizori - realizata in cadrul controller  ProcesingSupplierSTGController , atentie de verificat lucreaza cu Stg-ul nu cu supplier actual.
-5. Import furnizori - se afla in ExtractSupplierData din ProcesingSupplierSTGController
-6. Insert furnizori - se afla in SupplierService class
-7. Truncate  facturi - se afla in metoda InsertInvoice din InvoiceSupplier
-8. Get today - de verificat
-9. Insert Facturi - de verificat
+Multicash PROJECT Work Status
+GET Path&Name@Date – The action takes place in the Upload method of the controller (SupplierController and InvoiceController).
 
+Get Archive – Involves accessing the supplier database to verify if an entry with the same data already exists. (Note: Needs verification because if I empty the Supplier table, it will not have access to the older data).
 
-Urmeaza sa explica si restul de clase din namespace....
+Check last update and path – Implemented within the Upload method plus the rest of the newly added functionalities compared to the old application.
 
----------------------------------------------------------
+Truncate suppliers – Implemented within the ProcessingSupplierSTGController; Attention: verify that it works with the STG (Staging), not the actual supplier table.
 
-Readne MulticashApp
+Import suppliers – Located in ExtractSupplierData within ProcessingSupplierSTGController.
 
+Insert suppliers – Located in the SupplierService class.
 
-1. Explicatie metoda de verificare a facturilor deja existente in metoda de Upload in Controller InvoicesController
+Truncate invoices – Located in the InsertInvoice method within InvoiceSupplier.
 
-Logica în care o factură este exclusă în cazul în care deja există se află în următoarea secțiune a codului: ( vezi codul din controller)
+Get today – To be verified.
+
+Insert Invoices – To be verified.
+
+The rest of the classes in the namespace remain to be explained...
+
+MulticashApp Readme
+1. Explanation of the method for verifying pre-existing invoices in the Upload method in InvoicesController
+The logic where an invoice is excluded if it already exists is found in the following code section: (see code in controller)
+
+C#
+
 if (!existingInvoices.Any(e => e.InvoiceNumber == entry.InvoiceNumber && e.Company == entry.Company))
 {
     invoices.Add(entry);
     existingInvoices.Add(new { entry.InvoiceNumber, entry.Company });
 }
-Aici verificăm dacă există deja o factură cu același număr de factură și aceeași companie în lista existingInvoices. Dacă nu există o coincidență, adăugăm factura în lista invoices și adăugăm, de asemenea, factura în lista existingInvoices pentru a o exclude în viitor.
+Here, we check if an invoice with the same invoice number and the same company already exists in the existingInvoices list. If there is no match, we add the invoice to the invoices list and also add the invoice to the existingInvoices list to exclude it in the future.
 
-Aceasta înseamnă că facturile care au deja un număr de factură și o companie identice cu unele dintre facturile existente vor fi excluse și nu vor fi adăugate în lista invoices.
+This means that invoices that already have an invoice number and company identical to some of the existing invoices will be excluded and will not be added to the invoices list.
 
+EXPLANATIONS FOR InsertInvoice() METHOD in InvoiceService class
+This code represents a class named InvoiceService within the MultiCashApp application services. The class has a method named InsertInvoice that handles the insertion of invoices into the database.
 
--------------------------------------------------------
-EXPLICATII METODA InsertInvoice() din clasa InvoiceService
+Initially, a connection to the database is established using the connection specified in the class constructor.
 
-Acest cod reprezintă o clasă numită InvoiceService din cadrul serviciilor aplicației MultiCashApp. Clasa are o metodă numită InsertInvoice care se ocupă de inserarea facturilor în baza de date.
+A SQL command is executed to obtain a value from the [dbo].[MDM_Params] table. This value represents a counter that will be used to reset the identifier of the invoices in the Facturi (Invoices) table via the DBCC CHECKIDENT command.
 
-La început, se stabilește o conexiune cu baza de date folosind conexiunea specificată în constructorul clasei.
+The DBCC CHECKIDENT command is executed to reset the Facturi table identifier to the value obtained in the previous step.
 
-Se execută o comandă SQL pentru a obține o valoare din tabelul [dbo].[MDM_Params]. Această valoare reprezintă un contor care va fi utilizat pentru a reseta identificatorul facturilor în tabelul Facturi prin intermediul comenzii DBCC CHECKIDENT.
+A SQL insert command is executed into the [dbo].[Invoice_history] table. This command selects specific columns from the Facturi table and inserts them into Invoice_history, only if records with the same invoice identifier do not already exist in Invoice_history.
 
-Se execută comanda DBCC CHECKIDENT pentru a reseta identificatorul tabelului Facturi la valoarea obținută în pasul anterior.
+A SQL command is executed to delete all records from the Invoice table.
 
-Se execută o comandă SQL de inserare în tabelul [dbo].[Invoice_history]. Această comandă selectează anumite coloane din tabelul Facturi și le inserează în tabelul Invoice_history, doar dacă nu există deja înregistrări cu același identificator de factură în tabelul Invoice_history.
+A SQL insert command is executed into the Invoice table. This command selects specific columns from the [dbo].[Supplier_STG] and [dbo].[Invoices_STG] tables and inserts them into the Invoice table, only for records meeting certain conditions.
 
-Se execută o comandă SQL pentru ștergerea tuturor înregistrărilor din tabelul Invoice.
+A SQL command is executed to update a record in the [dbo].[MDM_Params] table.
 
-Se execută o comandă SQL de inserare în tabelul Invoice. Această comandă selectează anumite coloane din tabelele [dbo].[Supplier_STG] și [dbo].[Invoices_STG] și le inserează în tabelul Invoice, doar pentru înregistrările care îndeplinesc anumite condiții.
+Finally, the database connection is closed.
 
-Se execută o comandă SQL pentru actualizarea unei înregistrări din tabelul [dbo].[MDM_Params].
+The code uses objects from the Microsoft.Data.SqlClient namespace to work with the SQL Server database. Using objects such as SqlConnection, SqlCommand, and SqlDataReader, it is possible to connect to the database, execute SQL commands, and manipulate data in a safe and efficient manner.
 
-La final, conexiunea cu baza de date este închisă.
+It is important to mention that this is a code fragment and may require further adjustments to fit the specific context and requirements of the application.
 
-Codul folosește obiecte din namespace-ul Microsoft.Data.SqlClient pentru a lucra cu baza de date SQL Server. Folosind obiecte precum SqlConnection, SqlCommand și SqlDataReader, este posibilă conexiunea cu baza de date, executarea comenzilor SQL și manipularea datelor într-un mod sigur și eficient.
+InsertSupplier Method in SupplierService class
+In the corrected code, I made the following changes:
 
-Este important să menționez că acesta este un fragment de cod și poate necesita ajustări suplimentare pentru a se potrivi contextului și cerințelor specifice ale aplicației.
+Renamed conectionString to connectionString for consistency.
 
----------------------------------------------------------
+Added missing square brackets in the TRUNCATE TABLE and INSERT INTO statements for the Supplier table.
 
-Metoda InsertSupplier din clasa Supplier service
+Corrected the column order and added parentheses in the INSERT INTO statement to match the selected columns.
 
+Changed SELECT COUNT(cont) to SELECT COUNT(cont) FROM [dbo].[Supplier] a in the last SQL query.
 
-În codul corectat, am făcut următoarele modificări:
+Used ExecuteScalar instead of ExecuteNonQuery to retrieve the count value.
 
-Redenumit conectionString în connectionString pentru consecvență.
-S-au adăugat paranteze pătrate lipsă în instrucțiunile TRUNCATE TABLE și INSERT INTO pentru tabelul Furnizor.
-S-a corectat ordinea coloanelor și s-au adăugat paranteze în instrucțiunea INSERT INTO pentru a se potrivi cu coloanele selectate.
-S-a schimbat SELECT COUNT(cont) în SELECT COUNT(cont) FROM [dbo].[Supplier] a în ultima interogare SQL.
-S-a folosit ExecuteScalar în loc de ExecuteNonQuery pentru a prelua valoarea numărului.
-S-a corectat instrucțiunea return pentru a returna variabila de numărare.
+Corrected the return statement to return the count variable.
 
-
- Am tranformat cin cod T-SQL in cod c# procedura stocata in sql baza de date [MDM] facuta de Aurelian Niculcioiu ,Create date: <07 Sep 2015>,
--- Description:	<Insert furnizori si lista dubluri>
-ALTER PROCEDURE [dbo].[insert_furnizori]
-	
+I transformed the T-SQL code into C# code from the stored procedure in the [MDM] SQL database created by Aurelian Niculcioiu, Create date: <07 Sep 2015>, -- Description: <Insert suppliers and duplicates list> ALTER PROCEDURE [dbo].[insert_furnizori]
