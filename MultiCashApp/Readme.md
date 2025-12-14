@@ -1,3 +1,7 @@
+## Disclaimer
+
+This project does not contain proprietary code, data, or assets
+from any employer or client.
 
 Multicash PROJECT Work Status
 GET Path&Name@Date – The action takes place in the Upload method of the controller (SupplierController and InvoiceController).
